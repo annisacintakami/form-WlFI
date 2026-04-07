@@ -204,8 +204,8 @@
     <div class="container-xxl py-5 category">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Direktorat Jenderal Pemasyarakatan</h6>
-                <h3 class="mb-4">WIFI Tamu 2026 </h3>
+                <h6 class="section-title bg-white text-center text-primary px-6">Direktorat Jenderal Pemasyarakatan</h6>
+                <h3 class="mb-4"></h3> 
             </div>
             <div class="row g-3 justify-content-center">
                 {{-- <div class="col-lg-7 col-md-6">
@@ -242,21 +242,38 @@
                         </div>
                     </div>
                 </div> --}}
-                <div class="col-lg-7 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 437px;">
-                    <a class="position-relative d-block h-100 overflow-hidden" href="">
-                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('asset/img/ScanWIFI.jpeg') }}"
-                            alt="" style="object-fit: cover;">
-                        <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3"
-                            style="margin:  1px;">
-                            <h5 class="m-0">Scan barcode untuk tamu</h5>
-                            <small class="text-primary">WIFI-Tamu</small>
-                        </div>
-                    </a>
-                </div>
+<div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.7s">
+    <div class="row align-items-center">
+
+        <!-- QR Code -->
+        <div class="col-md-5 text-center mb-3 mb-md-0">
+            <img src="{{ asset('asset/img/qrcode-ditjenpas.jpg') }}"
+                 alt="QR WIFI"
+                 style="width: 220px; height: auto;">
+        </div>
+        <!-- Informasi -->
+        <div class="col-md-7">
+            <div class="bg-white p-4 rounded shadow-sm border-start border-4 border-primary">
+                <h5 class="mb-3 fw-bold">Scan barcode untuk tamu</h5>
+                <p class="mb-2"><strong>Nama WiFi:</strong> WIFI-Tamu</p>
+                <p class="mb-2"><strong>Akses:</strong> Untuk pengunjung</p>
+                <p class="mb-2"><strong>Keterangan:</strong> Gunakan QR untuk koneksi otomatis</p>
+
             </div>
         </div>
+
     </div>
-    <!-- Categories Start -->
+</div>
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-6"></h6>
+                <h3 class="mb-4"></h3> 
+            </div>
+</div>
+        </div>
+    </div>
+    
+
+        <!-- Categories Start -->
 
 
     <!-- Courses Start -->
@@ -523,8 +540,7 @@
     </div> --}}
     <!-- Testimonial End -->
 
-
-    <!-- Footer Start -->
+     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         {{-- <div class="container py-5">
             <div class="row g-5">
@@ -614,6 +630,7 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
+    <!-- JavaScript Libraries -->
     @include('compro.inc.js')
 </body>
 
