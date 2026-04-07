@@ -121,7 +121,7 @@
                 <div class="divider">OR</div>
 
                 <div class="mb-3">
-                    <a class="btn btn-light d-flex align-items-center justify-content-center w-100 border" href ={{ route('google-auth') }}>
+                    <a class="btn btn-light d-flex align-items-center justify-content-center w-100 border" href="/auth/google">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
                      alt="Google" width="20" class="me-2">Continue with Google
                     </a>
