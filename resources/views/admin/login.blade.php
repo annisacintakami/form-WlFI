@@ -75,11 +75,13 @@
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Welcome Admin 👋</h4>
-              <p class="mb-4">Please sign-in to your account</p>
+              <div class="text-center">
+                <h4 class="mb-2">Welcome Admin 👋</h4>
+                <p class="mb-4">Please sign-in to your account</p>
+              </div>
 
               <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                   <label for="email" class="form-label">Email or Username</label>
                   <input
                     type="text"
@@ -118,7 +120,7 @@
                 <div class="mb-3">
                   <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                 </div>
-                <div class="divider">OR</div>
+                <div class="divider">OR</div> --}}
 
                 <div class="mb-3">
                     <a class="btn btn-light d-flex align-items-center justify-content-center w-100 border" href="/auth/google">
@@ -128,12 +130,12 @@
                 </div>
               </form>
 
-              <p class="text-center">
+              {{-- <p class="text-center">
                 <span>New on our platform?</span>
                 <a href="auth-register-basic.html">
                   <span>Create an account</span>
                 </a>
-              </p>
+              </p> --}}
             </div>
           </div>
           <!-- /Register -->
@@ -143,14 +145,14 @@
 
     <!-- / Content -->
 
-    <div class="buy-now">
+    {{-- <div class="buy-now">
       <a
         href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
         target="_blank"
         class="btn btn-danger btn-buy-now"
         >Upgrade to Pro</a
       >
-    </div>
+    </div> --}}
 
     <!-- Core JS -->
 @include('admin.inc.js')

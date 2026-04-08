@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title', 'Contact Menu')
+@section('title', 'Daftar Pengajuan')
 @section('content')
 
     <div class="table-responsive">
