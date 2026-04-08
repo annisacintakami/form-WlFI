@@ -15,6 +15,9 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Contact::latest()->get();
+        if (!session('admin')) {
+        return redirect('/');
+    }
         return view('admin.contact.index', compact('contacts'));
     }
 

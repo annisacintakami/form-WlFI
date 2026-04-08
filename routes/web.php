@@ -65,5 +65,12 @@ Route::get('/admin', function () {
         return redirect('/');
     }
 
-    return "Welcome Admin 🎉";
+    return "Welcome Admin ";
 });
+
+Route::get('/logout', function () {
+    Session::flush(); // hapus session admin
+    return redirect('/'); // balik ke halaman home
+});
+
+
