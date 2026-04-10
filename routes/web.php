@@ -67,5 +67,17 @@ Route::get('/admin', function () {
         return redirect('/');
     }
 
+<<<<<<< HEAD
     return "Welcome Admin 🎉";
 });
+=======
+    return "Welcome Admin ";
+});
+
+Route::get('/logout', function () {
+    Session::flush(); // hapus session admin
+    return redirect('/'); // balik ke halaman home
+});
+
+
+>>>>>>> b4247032f632ea2f3440be0ea78d91ec8391b0ea

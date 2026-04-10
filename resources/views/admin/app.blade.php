@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style layout-menu-fixed"
@@ -95,7 +82,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Sophie" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -104,11 +91,11 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Sophie" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
+                            <span class="fw-semibold d-block">Admin</span>
                             <small class="text-muted">Admin</small>
                           </div>
                         </div>
@@ -117,7 +104,7 @@
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
-                    <li>
+                    {{-- <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
@@ -140,9 +127,9 @@
                     </li>
                     <li>
                       <div class="dropdown-divider"></div>
-                    </li>
+                    </li> --}}
                     <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
+                      <a class="dropdown-item" href="/logout">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
