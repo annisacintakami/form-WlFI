@@ -56,6 +56,8 @@ Route::get('/auth/google/callback', function () {
         return redirect('/contactadmin/index');
     }
 
+  
+
     return "Akses ditolak (bukan admin)";
 });
 

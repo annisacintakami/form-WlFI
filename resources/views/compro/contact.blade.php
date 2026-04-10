@@ -1,257 +1,442 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
-    <title>Pengajuan akun WIFI</title>
+    <title>Pengajuan Akun WIFI | Portal Instansi</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
 
     @include('compro.inc.css')
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #1e4e79;
+            --accent-gold: #FFD700;
+            --soft-slate: #f4f7fa;
+            --text-dark: #1e293b;
+        }
+
+        body {
+            background: var(--soft-slate);
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text-dark);
+        }
+
+        /* HEADER SECTION */
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            padding: 80px 20px 110px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: #d4af37;
+        }
+
+        .header-section h2 {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-section p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* FORM CARD */
+        .form-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* INFO BOX */
+        .info-box {
+            background: #f0f7ff;
+            border-left: 5px solid var(--secondary-blue);
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            color: var(--secondary-blue);
+        }
+
+        .info-box i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        /* LABEL & INPUT STYLING */
+        .form-label {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #334155;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-label i {
+            margin-right: 8px;
+            color: var(--secondary-blue);
+            width: 20px;
+            text-align: center;
+        }
+
+        .form-control, .form-select {
+            border-radius: 12px;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            background-color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #fff;
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 4px rgba(30, 78, 121, 0.1);
+            outline: none;
+        }
+
+        /* BUTTONS */
+        .btn-submit {
+            background: var(--secondary-blue)!important;
+            color: #ffffff !important;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            padding: 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 15px rgba(30, 78, 121, 0.2);
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 20px rgba(30, 78, 121, 0.3);
+            color: var(--accent-gold) !important;
+        }
+
+        .btn-guide {
+            background: #fff;
+            border: 1.5px solid #cbd5e1;
+            color: #64748b;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 5px 12px;
+            transition: 0.2s;
+        }
+
+        .btn-guide:hover {
+            background: #f1f5f9;
+            border-color: var(--secondary-blue);
+            color: var(--secondary-blue);
+        }
+
+        /* MODAL ENHANCEMENT */
+        .modal-content {
+            border: none;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            padding: 25px;
+            border: none;
+        }
+
+        .guide-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            transition: background 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .guide-step:hover {
+            background: #f8fafc;
+            border-color: #e2e8f0;
+        }
+
+        .step-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: #e0e7ff;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.25rem;
+        }
+
+        .step-content h6 {
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .code-badge {
+            background: #1e293b;
+            color: #38bdf8;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.85rem;
+        }
+
+        .modal-footer-tip {
+            background: #fff9db;
+            border-radius: 14px;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        /* FOOTER */
+        .footer-custom {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 40px 0;
+            margin-top: 100px;
+            font-size: 0.9rem;
+        }
+
+        .footer-custom a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .form-card { padding: 30px 20px; margin-top: -40px; }
+            .header-section { padding: 60px 20px 80px; }
+            .header-section h2 { font-size: 1.5rem; }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End -->
 
-
-    <!-- Navbar Start -->
     @include('compro.inc.nav')
 
-
-    <!-- Header Start -->
-    {{-- <div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Contact</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Header End -->
-
-
-    <!-- Contact Start -->
-    <div class="container-xxl py-5">
+    <div class="header-section">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Direktorat Jenderal Pemasyarakatan</h6>
-                <h3 class="mb-4">Pengajuan Akun WIFI Pegawai 2026 </h3>
-            </div>
-            <div class="row g-4 justify-content-center">
-                {{-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h5>Get In Touch</h5>
-                    <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form
-                        with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're
-                        done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
-                            style="width: 50px; height: 50px;">
-                            <i class="fa fa-map-marker-alt text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Office</h5>
-                            <p class="mb-0">123 Street, New York, USA</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
-                            style="width: 50px; height: 50px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Mobile</h5>
-                            <p class="mb-0">+012 345 67890</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
-                            style="width: 50px; height: 50px;">
-                            <i class="fa fa-envelope-open text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Email</h5>
-                            <p class="mb-0">info@example.com</p>
-                        </div>
-                    </div>
-                </div> --}}
-                {{-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <iframe class="position-relative rounded w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                        frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
-                </div> --}}
-                <div class="col-lg-5 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                    {{-- buat allert --}}
-                    {{-- FLASH MESSAGE --}}
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+            <h2>Pendaftaran Akses WIFI</h2>
+            <p>Satu identitas digital untuk konektivitas di seluruh area instansi.</p>
+        </div>
+    </div>
 
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            {{ $errors->first() }}
+                <div class="form-card">
+                    <div class="info-box">
+                        <i class="fas fa-shield-check"></i>
+                        <div>
+                            <strong class="d-block">Verifikasi Akun Pegawai</strong> 
+                            <span class="small opacity-90">Data yang Anda masukkan akan divalidasi dengan database Kepegawaian Pusat.</span>
                         </div>
-                    @endif
-                    {{-- END FLASH MESSAGE --}}
-                    <form action="{{ route('contact.store') }}" method="post">
+                    </div>
+
+                    <form action="{{ route('contact.store') }}" method="POST">
                         @csrf
-                        <div class="row g-3">
+                        <div class="row g-4">
+                            
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Your Name" required>
-                                    <label for="name">Your Name</label>
-                                </div>
+                                <label class="form-label"><i class="fas fa-user-circle"></i> Nama Lengkap</label>
+                                <input type="text" class="form-control" name="name" placeholder="E.g. Budi Setiawan" required>
                             </div>
+
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Your Email" required>
-                                    <label for="email">Your Email</label>
-                                </div>
+                                <label class="form-label"><i class="fas fa-envelope-open-text"></i> Email Instansi</label>
+                                <input type="email" class="form-control" name="email" placeholder="nama@instansi.go.id" required>
                             </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-id-badge"></i> NIP (18 Digit)</label>
+                                <input type="text" class="form-control" name="nip" id="nip_input" 
+                                       placeholder="Contoh: 1990xxxxxxxxxxxx" maxlength="18" required>
+                                <div id="nip_feedback" class="small mt-1" style="display: none; font-weight: 500;"></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-sitemap"></i> Unit Kerja</label>
+                                <select class="form-select" name="unit_kerja" required>
+                                    <option value="" disabled selected>Pilih Unit Kerja</option>
+                                    <option>Direktorat Jenderal Pemasyarakatan</option>
+                                    <option>Pusat Data dan Informasi</option>
+                                    <option>Biro Umum & Kepegawaian</option>
+                                    <option>Sekretariat Jenderal</option>
+                                </select>
+                            </div>
+
                             <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" name="subject"
-                                        placeholder="Subject" required>
-                                    <label for="subject">ini buat nip(?)</label>
-                                </div>
+                                <label class="form-label"><i class="fas fa-laptop-medical"></i> Jenis Perangkat</label>
+                                <select class="form-select" name="jenis_perangkat" required>
+                                    <option value="" disabled selected>Pilih Perangkat yang Didaftarkan</option>
+                                    <option>Laptop / Notebook</option>
+                                    <option>Smartphone (Android/iOS)</option>
+                                    <option>Tablet / iPad</option>
+                                </select>
                             </div>
+
                             <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" name="message" id="message"
-                                        style="height: 150px" required></textarea>
-                                    <label for="message">mac ip address(?)</label>
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label class="form-label mb-0"><i class="fas fa-microchip"></i> MAC Address Perangkat</label>
+                                    <button type="button" class="btn btn-guide btn-sm" data-bs-toggle="modal" data-bs-target="#guideModal">
+                                        <i class="fas fa-question-circle"></i> Bantuan
+                                    </button>
                                 </div>
+                                <input type="text" class="form-control" name="mac_address" id="mac_input" 
+                                       placeholder="XX:XX:XX:XX:XX:XX" maxlength="17" required>
+                                <small class="text-muted mt-1 d-block" style="font-size: 0.75rem;">*Pastikan Bluetooth/Wi-Fi dalam keadaan aktif saat menyalin MAC Address.</small>
                             </div>
-                            <div class="col-12">
-                                <button class="btn w-100 py-3" type="submit" style="background-color: #3B6998; color: white;">Ajukan Akun</button>
+
+                            <div class="col-12 pt-4">
+                                <button type="submit" class="btn btn-submit w-100">
+                                    <i class="fas fa-paper-plane me-2"></i> Kirim Pengajuan Sekarang
+                                </button>
                             </div>
+
                         </div>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
-    <!-- Contact End -->
 
+    <div class="modal fade" id="guideModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-white">
+                        <i class="fas fa-laptop-code me-2"></i> Panduan MAC Address
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body p-4">
+                    <div class="guide-step">
+                        <div class="step-icon">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6>Laptop Windows</h6>
+                            <p class="small text-muted mb-2">Buka <strong>Command Prompt</strong>, ketik perintah berikut:</p>
+                            <code class="code-badge">getmac</code>
+                            <p class="small text-muted mt-2 mb-0">Atau lihat di <em>Physical Address</em> pada <code>ipconfig /all</code>.</p>
+                        </div>
+                    </div>
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        {{-- <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Quick Link</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">FAQs & Help</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Gallery</h4>
-                    <div class="row g-2 pt-2">
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                    <div class="guide-step">
+                        <div class="step-icon">
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                        <div class="step-content">
+                            <h6>Smartphone (Android/iOS)</h6>
+                            <p class="small text-muted mb-0">
+                                Buka <strong>Pengaturan</strong> <i class="fas fa-chevron-right mx-1" style="font-size: 0.6rem;"></i> 
+                                <strong>Tentang Ponsel</strong> <i class="fas fa-chevron-right mx-1" style="font-size: 0.6rem;"></i> 
+                                <strong>Status</strong>
+                            </p>
+                            <p class="small text-muted mb-0">Salin kode pada bagian <strong>Alamat MAC Wi-Fi</strong>.</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text"
-                            placeholder="Your email">
-                        <button type="button"
-                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+
+                    <div class="modal-footer-tip d-flex align-items-start mt-3">
+                        <i class="fas fa-lightbulb me-2 mt-1"></i>
+                        <span><strong>Tips:</strong> MAC Address biasanya berupa 12 karakter (kombinasi huruf A-F & angka 0-9).</span>
                     </div>
+                </div>
+
+                <div class="modal-footer border-0 pb-4 justify-content-center">
+                    <button type="button" class="btn btn-secondary px-5" style="border-radius: 10px; font-weight: 600;" data-bs-dismiss="modal">Saya Mengerti</button>
                 </div>
             </div>
-        </div> --}}
+        </div>
+    </div>
+
+    <footer class="footer-custom text-center">
         <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">2026 Annisa Cintakami Firdaus</a>, All Right Reserved.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        {{-- Designed By <a class="border-bottom" href="https://htmlcodex.com">yyyy</a><br><br> --}}
-                        {{-- Distributed By <a class="border-bottom" href="https://themewagon.com">yyyy</a> --}}
-                    </div>
-                    {{-- <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
-                        </div>
-                    </div> --}}
-                </div>
-            </div>
+            <!--<p class="mb-2">Sistem Informasi Layanan Teknologi Informasi</p>-->
+            <p class="mb-0 opacity-75">© 2026 <strong>Direktorat Jenderal Pemasyarakatan</strong></p>
+            <!--<p class="small mt-2">Dikembangkan oleh <a href="#">Tim TI Pemasyarakatan</a></p>-->
         </div>
-    </div>
-    <!-- Footer End -->
+    </footer>
 
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
     @include('compro.inc.js')
-</body>
 
+    <script>
+        // Validasi NIP (18 Digit)
+        const nipInput = document.getElementById('nip_input');
+        const nipFeedback = document.getElementById('nip_feedback');
+
+        nipInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, ''); 
+            const length = this.value.length;
+            
+            if (length > 0 && length < 18) {
+                nipFeedback.style.display = 'block';
+                nipFeedback.style.color = '#e11d48'; 
+                nipFeedback.innerText = `⚠️ Digit: ${length}/18`;
+                this.style.borderColor = '#e11d48';
+            } else if (length === 18) {
+                nipFeedback.style.color = '#10b981'; 
+                nipFeedback.innerHTML = '✅ NIP Lengkap.';
+                this.style.borderColor = '#10b981';
+            } else {
+                nipFeedback.style.display = 'none';
+                this.style.borderColor = '#e2e8f0';
+            }
+        });
+
+        // Auto-format MAC Address (Uppercase & Colon)
+        const macInput = document.getElementById('mac_input');
+        macInput.addEventListener('input', function() {
+            let val = this.value.toUpperCase().replace(/[^0-9A-F]/g, '');
+            let parts = val.match(/.{1,2}/g);
+            this.value = parts ? parts.join(':').substring(0, 17) : val;
+        });
+    </script>
+
+</body>
 </html>

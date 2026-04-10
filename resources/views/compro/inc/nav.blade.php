@@ -1,44 +1,210 @@
-    {{-- <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0"> --}}
-    <nav class="navbar navbar-expand-lg shadow sticky-top p-0" style="background-color: #3B6998;">
-        <a href="{{ route('home.index') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-white d-flex align-items-center">
-                <img src="https://kemenimipas.go.id/images/logo/Kementerian-Hukum-Dan-Ham-Kemenkumham-Logo-Vector.png"
-                    alt="Imipas" style="height:35px;" class="me-2">
+<!DOCTYPE html>
+<html lang="id">
 
-                <img src="https://media.licdn.com/dms/image/v2/C560BAQEORKYSEpYmvQ/company-logo_200_200/company-logo_200_200/0/1641759945715/direktorat_jenderal_pemasyarakatan_logo?e=1776902400&v=beta&t=uk5zJSYTOmXhP7SPG8SQ1r2wNuOuDs03hzgB0IO1vx8"
-                    alt="Ditjenpas" style="height:35px; object-fit:contain;" class="me-3">
+<head>
+    <meta charset="utf-8">
+    <title>Pengajuan Akun WIFI | Portal Instansi</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-                Kemenimipas Ditjenpas
-            </h2>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                {{-- <a href="{{ route('home.index') }}"
-                    class="nav-item nav-link {{ Route::is('home.index') ? 'active' : '' }}">Home</a>
-                <a href="{{ route('about.index') }}"
-                    class="nav-item nav-link {{ Route::is('about.index') ? 'active' : '' }}">About</a>
-                <a href="{{ route('courses.index') }}"
-                    class="nav-item nav-link {{ Route::is('courses.index') ? 'active' : '' }}">Courses</a>
-                <div class="nav-item dropdown">
-                    <a href="#"
-                        class="nav-link dropdown-toggle  {{ Route::is('testimonial.index') || Route::is('team.index') ? 'active' : '' }}"
-                        data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="{{ route('team.index') }}"
-                            class="dropdown-item  {{ Route::is('team.index') ? 'active' : '' }}">Our Team</a>
-                        <a href="{{ route('testimonial.index') }}"
-                            class="dropdown-item  {{ Route::is('testimonial.index') ? 'active' : '' }}">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div> --}}
-                <a href="{{ route('contact.index') }}"
-                    class="nav-item nav-link text-white {{ Route::is('contact.index') ? 'active' : '' }}">Buat pegawai</a>
+    @include('compro.inc.css')
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f4f7fa;
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 3px solid #241178;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        /* Logo Section */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-right: 15px;
+            border-right: 1px solid #d1d5db;
+        }
+
+        .brand-logo img {
+            height: 48px;
+            object-fit: contain;
+        }
+
+        /* Text Brand */
+        .brand-text {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .brand-text-main {
+            font-size: 15px !important;
+            font-weight: 800 !important;
+            color: #241178 !important;
+            line-height: 1.2 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+            font-family: 'Inter', sans-serif !important;
+            margin: 0;
+        }
+
+        .brand-text-sub {
+            font-size: 13px !important;
+            color: #64748b !important;
+            font-weight: 500 !important;
+            line-height: 1.2 !important;
+            font-family: 'Inter', sans-serif !important;
+            margin: 0;
+        }
+
+        /* Buttons */
+        .btn-custom {
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-pegawai {
+            background: transparent;
+            border: 2px solid #3B6998;
+            color: #3B6998;
+        }
+
+        .btn-outline-pegawai:hover {
+            background: #3B6998;
+            color: white;
+        }
+
+        .btn-dark-admin {
+            background: #1B2340;
+            border: 2px solid #1B2340;
+            color: white;
+        }
+
+        .btn-dark-admin:hover {
+            background: #111827;
+            border-color: #111827;
+        }
+
+        /* Mobile */
+        @media (max-width: 991.98px) {
+
+            .navbar-collapse {
+                background: #fff;
+                padding: 1rem;
+                border-radius: 15px;
+                margin-top: 10px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+
+            .brand-text-main {
+                font-size: 13px !important;
+            }
+
+            .brand-text-sub {
+                font-size: 11px !important;
+            }
+
+            .brand-logo img {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid px-lg-5">
+
+            <!-- Logo + Brand -->
+            <a href="{{ route('home.index') }}" class="navbar-brand">
+
+                <div class="brand-logo d-none d-sm-flex">
+                    <img src="https://kemenimipas.go.id/images/logo/Kementerian-Hukum-Dan-Ham-Kemenkumham-Logo-Vector.png"
+                        alt="Logo 1">
+
+                    <img src="{{ asset('asset/img/logo-imipas.jpg') }}"
+                        alt="Logo 2">
+                </div>
+
+                <div class="brand-text">
+                    <p class="brand-text-main">
+                        Kementerian Imigrasi & Pemasyarakatan
+                    </p>
+
+                    <p class="brand-text-sub">
+                        Direktorat Jenderal Pemasyarakatan
+                    </p>
+                </div>
+
+            </a>
+
+            <!-- Toggle Mobile -->
+            <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+
+                <svg width="28" height="28" viewBox="0 0 24 24"
+                    fill="none" stroke="#241178" stroke-width="2.5">
+
+                    <line x1="3" x2="21" y1="12" y2="12"/>
+                    <line x1="3" x2="21" y1="6" y2="6"/>
+                    <line x1="3" x2="21" y1="18" y2="18"/>
+
+                </svg>
+            </button>
+
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                <div class="navbar-nav ms-auto gap-3 mt-4 mt-lg-0">
+
+                    <a href="{{ route('contact.index') }}"
+                        class="btn btn-custom btn-outline-pegawai">
+
+                        <i class="fas fa-user-friends me-2"></i>
+                        Pegawai
+                    </a>
+
+                    <a href="{{ route('login.index') }}"
+                        class="btn btn-custom btn-dark-admin">
+
+                        <i class="fas fa-user-shield me-2"></i>
+                        Admin
+                    </a>
+
+                </div>
+
             </div>
-            <a href="{{ route('login.index') }}" class="btn btn-light py-4 px-lg-5 d-none d-lg-block">Admin Login<i
-                    class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
-    <!-- Navbar End -->
+
+    @include('compro.inc.js')
+
+</body>
+</html>

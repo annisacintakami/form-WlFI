@@ -20,7 +20,43 @@
             width: 100%;
             object-fit: cover;
         }
-    </style>
+    
+    @media (max-width: 991px) {
+
+        .row.bg-light {
+            text-align: center;
+        }
+
+        .row.bg-light .d-flex {
+            justify-content: center;
+        }
+
+        .row.bg-light img {
+            margin: auto;
+        }
+
+    }
+
+    @media (max-width: 576px) {
+
+        h3 {
+            font-size: 24px;
+        }
+
+        .section-title {
+            font-size: 16px;
+        }
+
+    }
+    .footer-custom {
+    background: #0f172a;
+    color: #94a3b8;
+    padding: 40px 0;
+    margin-top: 100px;
+    font-size: 0.9rem;
+}
+</style>
+    
 </head>
 
 <body>
@@ -37,236 +73,97 @@
     <!-- Navbar Start -->
     @include('compro.inc.nav')
 
-
-    <!-- Carousel Start -->
-    {{-- <div class="container-fluid p-0 mb-5">
-        <div class="owl-carousel header-carousel position-relative">
-            @if ($homes->isEmpty())
-                <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="{{ asset('asset/img/carousel-2.jpg') }}" alt="">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                        style="background: rgba(24, 29, 56, .7);">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-sm-10 col-lg-8">
-                                    <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Best Online
-                                        Courses
-                                    </h5>
-                                    <h1 class="display-3 text-white animated slideInDown">Get Educated Online From Your
-                                        Home
-                                    </h1>
-                                    <p class="fs-5 text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at
-                                        sed
-                                        stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea sanctus
-                                        eirmod elitr.</p>
-                                    <a href=""
-                                        class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read
-                                        More</a>
-                                    <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join
-                                        Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-            @foreach ($homes as $v)
-                <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="{{ asset('storage/' . $v->image) }}" alt="">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                        style="background: rgba(24, 29, 56, .7);">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-sm-10 col-lg-8">
-                                    <h5 class="text-primary text-uppercase mb-3 animated slideInDown">
-                                        {{ $v->subtitle }}
-                                    </h5>
-                                    <h1 class="display-3 text-white animated slideInDown">
-                                        {{ Str::title($v->title) }}
-                                    </h1>
-                                    <p class="fs-5 text-white mb-4 pb-2">
-                                        {{ Str::words(ucfirst($v->description), 15, '..') }}
-                                    </p>
-                                    <a href=""
-                                        class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read
-                                        More</a>
-                                    <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join
-                                        Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
-        </div>
-    </div> --}}
-    <!-- Carousel End -->
-
-
-    <!-- Service Start -->
-    {{-- <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
-                            <h5 class="mb-3">Skilled Instructors</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-globe text-primary mb-4"></i>
-                            <h5 class="mb-3">Online Classes</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-home text-primary mb-4"></i>
-                            <h5 class="mb-3">Home Projects</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
-                            <h5 class="mb-3">Book Library</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Service End -->
-
-
-    <!-- About Start -->
-    {{-- <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('asset/img/about.jpg') }}"
-                            alt="" style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
-                    <h1 class="mb-4">Welcome to eLEARNING</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam
-                        et eos. Clita erat ipsum et lorem et sit.</p>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam
-                        et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat
-                        amet</p>
-                    <div class="row gy-2 gx-4 mb-4">
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors
-                            </p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Online Classes</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>International
-                                Certificate</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors
-                            </p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Online Classes</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>International
-                                Certificate</p>
-                        </div>
-                    </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- About End -->
-
-
     <!-- Categories Start -->
-    <div class="container-xxl py-5 category">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-6">Direktorat Jenderal Pemasyarakatan</h6>
-                <h3 class="mb-4"></h3> 
+<div class="container-xxl py-5 category">
+    <div class="container">
+
+        <!-- Judul -->
+        <div class="text-center mb-5">
+            <h5 class="section-title bg-white text-primary px-4 fw-bold"
+                style="color:#003366 !important;">
+                Layanan Akses WIFI Direktorat Jenderal Pemasyarakatan
+            </h5>
+        </div>
+
+        <!-- Card WIFI -->
+        <div class="row g-4 bg-light rounded-4 shadow-sm p-4 align-items-center">
+
+            <!-- QR CODE -->
+            <div class="col-lg-3 col-md-12 text-center">
+                <img src="{{ asset('asset/img/qrcode-ditjenpas.jpg') }}"
+                    alt="QR WIFI"
+                    class="img-fluid rounded-3 shadow"
+                    style="max-width:220px; width:100%; border:4px solid white;">
+
+                <p class="mt-3 text-muted fw-semibold small">
+                    <i class="bi bi-qr-code-scan"></i>
+                    Scan untuk Terhubung
+                </p>
             </div>
-            <div class="row g-3 justify-content-center">
-                {{-- <div class="col-lg-7 col-md-6">
-                    <div class="row g-3">
-                        <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('asset/img/cat-1.jpg') }}" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3"
-                                    style="margin: 1px;">
-                                    <h5 class="m-0">Web Design</h5>
-                                    <small class="text-primary">49 Courses</small>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('asset/img/cat-2.jpg') }}" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3"
-                                    style="margin: 1px;">
-                                    <h5 class="m-0">Graphic Design</h5>
-                                    <small class="text-primary">49 Courses</small>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('asset/img/cat-3.jpg') }}" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3"
-                                    style="margin: 1px;">
-                                    <h5 class="m-0">Video Editing</h5>
-                                    <small class="text-primary">49 Courses</small>
-                                </div>
-                            </a>
+
+            <!-- INFORMASI WIFI -->
+            <div class="col-lg-4 col-md-12">
+                <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+
+                    <h3 class="fw-bold text-primary mb-4">
+                        Akses WiFi Tamu
+                    </h3>
+
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted text-uppercase">
+                            Nama Network (SSID)
+                        </label>
+
+                        <div class="d-flex align-items-center mt-1">
+                            <i class="bi bi-wifi text-primary me-2 fs-4"></i>
+                            <span class="fw-bold fs-5">WIFI-Tamu</span>
                         </div>
                     </div>
-                </div> --}}
-<div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.7s">
-    <div class="row align-items-center">
 
-        <!-- QR Code -->
-        <div class="col-md-5 text-center mb-3 mb-md-0">
-            <img src="{{ asset('asset/img/qrcode-ditjenpas.jpg') }}"
-                 alt="QR WIFI"
-                 style="width: 220px; height: auto;">
-        </div>
-        <!-- Informasi -->
-        <div class="col-md-7">
-            <div class="bg-white p-4 rounded shadow-sm border-start border-4 border-primary">
-                <h5 class="mb-3 fw-bold">Scan barcode untuk tamu</h5>
-                <p class="mb-2"><strong>Nama WiFi:</strong> WIFI-Tamu</p>
-                <p class="mb-2"><strong>Akses:</strong> Untuk pengunjung</p>
-                <p class="mb-2"><strong>Keterangan:</strong> Gunakan QR untuk koneksi otomatis</p>
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted text-uppercase">
+                            Kategori Akses
+                        </label>
 
+                        <div class="d-flex align-items-center mt-1">
+                            <i class="bi bi-person-check text-primary me-2 fs-4"></i>
+                            <span class="fw-semibold">Khusus Pengunjung</span>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-primary mt-3 mb-0 small">
+                        <i class="bi bi-info-circle"></i>
+                        Arahkan kamera ponsel Anda ke QR Code di samping.
+                    </div>
+
+                </div>
             </div>
+
+            <!-- GAMBAR GEDUNG -->
+            <div class="col-lg-5 col-md-12">
+                <div class="position-relative">
+                    <img src="{{ asset('asset/img/foto dirjenpas.jpg') }}"
+                        alt="Gedung"
+                        class="img-fluid rounded-4 shadow"
+                        style="width:100%; height:350px; object-fit:cover;">
+
+                    <span class="badge bg-primary position-absolute bottom-0 start-0 m-3 px-3 py-2">
+                        Gedung Pusat
+                    </span>
+                </div>
+            </div>
+
         </div>
 
     </div>
 </div>
-<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+
+    
+
+
+<!--<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-6"></h6>
-                <h3 class="mb-4"></h3> 
+                <h3 class="mb-4"></h3> -->
             </div>
 </div>
         </div>
@@ -541,93 +438,18 @@
     <!-- Testimonial End -->
 
      <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        {{-- <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Quick Link</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">FAQs & Help</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Gallery</h4>
-                    <div class="row g-2 pt-2">
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text"
-                            placeholder="Your email">
-                        <button type="button"
-                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+   <footer class="footer-custom text-center">
         <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">2026 Annisa Cintakami Firdaus</a>, All Right Reserved.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        {{-- Designed By <a class="border-bottom" href="https://htmlcodex.com">yyyy</a><br><br> --}}
-                        {{-- Distributed By <a class="border-bottom" href="https://themewagon.com">yyyy</a> --}}
-                    </div>
-                    {{-- <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
-                        </div>
-                    </div> --}}
-                </div>
-            </div>
+            <!--<p class="mb-2">Sistem Informasi Layanan Teknologi Informasi</p>-->
+            <p class="mb-0 opacity-75">© 2026 <strong>Direktorat Jenderal Pemasyarakatan</strong></p>
+            <!--<p class="small mt-2">Dikembangkan oleh <a href="#">Tim TI Pemasyarakatan</a></p>-->
         </div>
-    </div>
+    </footer>
     <!-- Footer End -->
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!--<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a> -->
 
 
     <!-- JavaScript Libraries -->
