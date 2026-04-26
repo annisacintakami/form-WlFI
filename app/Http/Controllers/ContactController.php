@@ -38,8 +38,10 @@ class ContactController extends Controller
             $validasi = $request->validate([
                 'name' => 'required',
                 'email'  => 'required|email',
-                'subject'  => 'required',
-                'message'  => 'required'
+                'nip'  => 'required',
+                'unit_kerja'  => 'required',
+                'jenis_perangkat'  => 'required',
+                'mac_address'  => 'required'
             ]);
             $contact = Contact::create($validasi);
             return back()->with('success', 'message has been sent to the admin');
