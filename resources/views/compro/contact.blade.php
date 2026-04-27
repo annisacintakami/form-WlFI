@@ -301,10 +301,15 @@
                                 <label class="form-label"><i class="fas fa-sitemap"></i> Unit Kerja</label>
                                 <select class="form-select" name="unit_kerja" required>
                                     <option value="" disabled selected>Pilih Unit Kerja</option>
-                                    <option>Direktorat Jenderal Pemasyarakatan</option>
-                                    <option>Pusat Data dan Informasi</option>
-                                    <option>Biro Umum & Kepegawaian</option>
-                                    <option>Sekretariat Jenderal</option>
+                                    <option>Sekretariat Direktorat Jenderal</option>
+                                    <option>Dit. Sistem & Strategi</option>
+                                    <option>Dit. Pelayanan Tahanan & Anak</option>
+                                    <option>Dit. Pembinaan Narapidana</option>
+                                    <option>Dit. Pembinaan Kemasyarakatan</option>
+                                    <option>Dit. Kesehatan & Rehabilitasi</option>
+                                    <option>Dit. Pengamanan & Intelijen</option>
+                                    <option>Dit. Kepatuhan Internal</option>
+                                    <option>Dit. TI & Kerja Sama</option>
                                 </select>
                             </div>
 
