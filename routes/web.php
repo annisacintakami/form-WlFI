@@ -13,8 +13,10 @@ use App\Http\Controllers\ContactController;
 */
 
 Route::get('/', function () {
-    $homes = Home::orderBy('id', 'DESC')->limit(2)->get();
-    return view('compro.index', compact('homes'));
+    // $homes = Home::orderBy('id', 'DESC')->limit(2)->get();
+    return view('compro.index',
+    //  compact('homes')
+     );
 })->name('home.index');
 
 Route::get('/contact', function () {
