@@ -4,11 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>Pengajuan Akun WIFI | Portal Instansi</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     @include('compro.inc.css')
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
 
     <style>
         :root {
@@ -53,6 +55,7 @@
             font-size: 2rem;
             color: var(--accent-gold);
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Inter', sans-serif !important;
         }
 
         .header-section p {
@@ -60,6 +63,7 @@
             opacity: 0.9;
             font-size: 1.1rem;
             font-weight: 300;
+            font-family: 'Inter', sans-serif !important;
         }
 
         /* FORM CARD */
@@ -249,6 +253,32 @@
             .header-section { padding: 60px 20px 80px; }
             .header-section h2 { font-size: 1.5rem; }
         }
+
+        .my-popup-size {
+        width: 300px !important;
+        padding: 2rem !important;
+        font-size: 0.9rem;
+        }
+
+    .my-toast {
+    width: 280px !important;
+    padding: 12px 16px !important;
+    border-radius: 12px !important;
+    font-size: 0.85rem !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Judul */
+.my-toast .swal2-title {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+
+/* Icon */
+.my-toast .swal2-icon {
+    transform: scale(0.8);
+}
+
     </style>
 </head>
 
@@ -258,8 +288,8 @@
 
     <div class="header-section">
         <div class="container">
-            <h2>Pendaftaran Akses WIFI</h2>
-            <p>Satu identitas digital untuk konektivitas di seluruh area instansi.</p>
+            <h2>PENDAFTARAN WIFI PEGAWAI</h2>
+            <p>Akses Internet mudah untuk seluruh area instansi</p>
         </div>
     </div>
 
@@ -272,7 +302,7 @@
                         <i class="fas fa-shield-check"></i>
                         <div>
                             <strong class="d-block">Verifikasi Akun Pegawai</strong> 
-                            <span class="small opacity-90">Data yang Anda masukkan akan divalidasi dengan database Kepegawaian Pusat.</span>
+                            <span class="small opacity-90">Pastikan data yang anda masukkan sudah benar dan sesuai dengan data kepegawaian.</span>
                         </div>
                     </div>
 
@@ -286,7 +316,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label"><i class="fas fa-envelope-open-text"></i> Email Instansi</label>
+                                <label class="form-label"><i class="fas fa-envelope-open-text"></i> Alamat Email</label>
                                 <input type="email" class="form-control" name="email" placeholder="nama@instansi.go.id" required>
                             </div>
 
@@ -301,10 +331,15 @@
                                 <label class="form-label"><i class="fas fa-sitemap"></i> Unit Kerja</label>
                                 <select class="form-select" name="unit_kerja" required>
                                     <option value="" disabled selected>Pilih Unit Kerja</option>
-                                    <option>Direktorat Jenderal Pemasyarakatan</option>
-                                    <option>Pusat Data dan Informasi</option>
-                                    <option>Biro Umum & Kepegawaian</option>
-                                    <option>Sekretariat Jenderal</option>
+                                    <option>Sekretariat Direktorat Jenderal</option>
+                                    <option>Dit. Sistem & Strategi</option>
+                                    <option>Dit. Pelayanan Tahanan & Anak</option>
+                                    <option>Dit. Pembinaan Narapidana</option>
+                                    <option>Dit. Pembinaan Kemasyarakatan</option>
+                                    <option>Dit. Kesehatan & Rehabilitasi</option>
+                                    <option>Dit. Pengamanan & Intelijen</option>
+                                    <option>Dit. Kepatuhan Internal</option>
+                                    <option>Dit. TI & Kerja Sama</option>
                                 </select>
                             </div>
 
@@ -437,6 +472,27 @@
             this.value = parts ? parts.join(':').substring(0, 17) : val;
         });
     </script>
+
+    <script>
+@if(session('success'))
+  @if(session('success'))
+Swal.fire({
+    toast: true, // 🔥 bikin kecil & seperti notif
+    position: 'bottom-end', // kanan bawah
+    icon: 'success',
+    title: 'Pengajuan berhasil dikirim',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+
+    customClass: {
+        popup: 'my-toast'
+    }
+});
+
+@endif
+@endif
+</script>
 
 </body>
 </html>

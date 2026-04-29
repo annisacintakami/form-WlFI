@@ -1,160 +1,201 @@
 <!DOCTYPE html>
-
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
-<html
-  lang="en"
-  class="light-style customizer-hide"
-  dir="ltr"
-  data-theme="theme-default"
-  data-assets-path="../assets/"
-  data-template="vertical-menu-template-free"
->
-  <head>
+<html lang="id" class="light-style customizer-hide" dir="ltr">
+<head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
-    <style>
-  .divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 20px 0;
-  }
-  .divider::before,
-  .divider::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #ccc;
-  }
-  .divider:not(:empty)::before {
-    margin-right: .75em;
-  }
-  .divider:not(:empty)::after {
-    margin-left: .75em;
-  }
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Login Admin | DITJENPAS</title>
 
-    <title>Login Admin Pengajuan WIFI</title>
-
-    <meta name="description" content="" />
-
-    <!-- Favicon -->
     @include('admin.inc.head')
-  </head>
 
-  <body>
-    <!-- Content -->
+    <style>
+        /* 🖼️ BACKGROUND OPTIMIZATION */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95)), 
+                        url('{{ asset('asset/img/foto dirjenpas.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Public Sans', -apple-system, sans-serif;
+            overflow: hidden;
+        }
 
-    <div class="container-xxl">
-      <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner">
-          <!-- Register -->
-          <div class="card">
-            <div class="card-body">
-              <!-- Logo -->
-              <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
-                  <span class="app-brand-logo">
-                <img src="https://media.licdn.com/dms/image/v2/C560BAQEORKYSEpYmvQ/company-logo_200_200/company-logo_200_200/0/1641759945715/direktorat_jenderal_pemasyarakatan_logo?e=1776902400&v=beta&t=uk5zJSYTOmXhP7SPG8SQ1r2wNuOuDs03hzgB0IO1vx8"
-                    alt="Ditjenpas" style="height:35px; object-fit:contain;" class="me-3">
-                  </span>
-                  <span class="app-brand-text text-body fw-bolder">DITJENPAS 2026</span>
-                </a>
-              </div>
-              <!-- /Logo -->
-              <div class="text-center">
-                <h4 class="mb-2">Welcome Admin 👋</h4>
-                <p class="mb-4">Please sign-in to your account</p>
-              </div>
+        /* 🃏 PREMIUM GLASS CARD */
+        .authentication-inner {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 480px; 
+            padding: 24px;
+        }
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
-                {{-- <div class="mb-3">
-                  <label for="email" class="form-label">Email or Username</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="email"
-                    name="email-username"
-                    placeholder="Enter your email or username"
-                    autofocus
-                  />
+        .card {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 🔘 GOOGLE BUTTON - HIGH CONTRAST */
+        .btn-google-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1e293b; /* Gelap agar kontras dengan card putih */
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 18px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .btn-google-login:hover {
+            background-color: #0f172a;
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(30, 41, 59, 0.3);
+        }
+
+        .btn-google-login img {
+            width: 24px;
+            margin-right: 14px;
+            background: white;
+            padding: 2px;
+            border-radius: 5px;
+        }
+
+        /* 🏛️ BRANDING & DIVIDER */
+        .app-brand-logo img {
+            height: 85px;
+            width: auto;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+            margin: 25px 0;
+        }
+
+        .main-title {
+            color: #0f172a;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 5px;
+        }
+
+        .sub-title {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        /* 💡 INSTRUCTION BOX */
+        .instruction-text {
+            color: #334155;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            border-left: 5px solid #2563eb; /* Aksen warna biru untuk 'trust' */
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* 📝 FOOTER */
+        .footer-text {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 35px;
+        }
+
+        .copyright-year {
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        /* 🚀 ANIMATION */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 576px) {
+            .authentication-inner { padding: 15px; }
+            .card-body { padding: 1.5rem !important; }
+            .main-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="authentication-inner fade-in-up">
+        <div class="card border-0">
+            <div class="card-body p-4 p-md-5">
+                
+                <div class="text-center">
+                    <div class="app-brand justify-content-center mb-2">
+                        <a href="#" class="app-brand-link">
+                            <span class="app-brand-logo">
+                                 <img src="{{ asset('asset/img/logo-ditjenpas2.png') }}" alt="Logo DITJENPAS">
+                            </span>
+                        </a>
+                    </div>
+                    <h3 class="main-title">DITJENPAS 2026</h3>
+                    <p class="sub-title">Portal Administrasi Pusat</p>
                 </div>
-                <div class="mb-3 form-password-toggle">
-                  <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Password</label>
-                    <a href="auth-forgot-password-basic.html">
-                      <small>Forgot Password?</small>
+
+                <div class="divider"></div>
+
+                <div class="mt-2">
+                    <div class="instruction-text">
+                        <div class="fw-bold mb-1 text-primary">
+                            <i class="bx bx-info-circle me-1"></i> Perhatian:
+                        </div>
+                        Pastikan Anda masuk menggunakan akun email yang terdaftar di sistem kami.
+                    </div>
+                    
+                    <a href="/auth/google" class="btn-google-login">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google Icon">
+                        Lanjutkan dengan Google
                     </a>
-                  </div>
-                  <div class="input-group input-group-merge">
-                    <input
-                      type="password"
-                      id="password"
-                      class="form-control"
-                      name="password"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password"
-                    />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
                 </div>
-                <div class="mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="remember-me" />
-                    <label class="form-check-label" for="remember-me"> Remember Me </label>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
-                </div>
-                <div class="divider">OR</div> --}}
 
-                <div class="mb-3">
-                    <a class="btn btn-light d-flex align-items-center justify-content-center w-100 border" href="/auth/google">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
-                     alt="Google" width="20" class="me-2">Continue with Google
-                    </a>
+                <div class="footer-text text-center">
+                    <p class="mb-1">
+                        <span class="copyright-year">&copy; 2026 DITJENPAS IT TEAM</span>
+                    </p>
+                    <p class="mb-0 text-uppercase" style="letter-spacing: 0.5px;">Kementerian Imigrasi dan Pemasyarakatan</p>
                 </div>
-              </form>
 
-              {{-- <p class="text-center">
-                <span>New on our platform?</span>
-                <a href="auth-register-basic.html">
-                  <span>Create an account</span>
-                </a>
-              </p> --}}
             </div>
-          </div>
-          <!-- /Register -->
         </div>
-      </div>
     </div>
 
-    <!-- / Content -->
-
-    {{-- <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div> --}}
-
-    <!-- Core JS -->
-@include('admin.inc.js')
-  </body>
+    @include('admin.inc.js')
+</body>
 </html>

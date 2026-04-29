@@ -14,19 +14,12 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::latest()->get();
         if (!session('admin')) {
-        return redirect('/');
-    }
-        return view('admin.contact.index', compact('contacts'));
-    }
+            return redirect('/');
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $contacts = Contact::latest()->get();
+        return view('admin.contact.index', compact('contacts'));
     }
 
     /**
@@ -37,60 +30,51 @@ class ContactController extends Controller
         try {
             $validasi = $request->validate([
                 'name' => 'required',
-                'email'  => 'required|email',
-                'nip'  => 'required',
-                'unit_kerja'  => 'required',
-                'jenis_perangkat'  => 'required',
-                'mac_address'  => 'required'
+                'email' => 'required|email',
+                'nip' => 'required',
+                'unit_kerja' => 'required',
+                'jenis_perangkat' => 'required',
+                'mac_address' => 'required'
             ]);
-            $contact = Contact::create($validasi);
-            return back()->with('success', 'message has been sent to the admin');
+
+            Contact::create($validasi);
+
+            // 🔥 INI YANG DIPAKAI UNTUK POPUP
+            return back()->with('success', true);
+
         } catch (ValidationException $th) {
-            return back()->withErrors(['error' => 'failed to send']);
+            return back()->withErrors(['error' => 'Gagal mengirim pengajuan']);
         }
     }
 
+    /**
+     * Reply email dari admin
+     */
     public function reply(Request $request, $id)
     {
-        $contact = Contact::find($id);
-        $validasi = $request->validate(['reply' => 'required']);
+        $contact = Contact::findOrFail($id);
+
+        $validasi = $request->validate([
+            'reply' => 'required'
+        ]);
+
         $contact->update($validasi);
-        //kirim balasan
+
+        // Kirim email balasan
         Mail::raw($request->reply, function ($message) use ($contact) {
-            $message->to($contact->email)->subject('Reply from admin' . $contact->subject);
+            $message->to($contact->email)
+                    ->subject('Reply from admin');
         });
-        return back()->with('success', 'Replied');
+
+        return back()->with('success', true);
     }
 
     /**
-     * Display the specified resource.
+     * Optional method lain (tidak digunakan)
      */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function create() {}
+    public function show(string $id) {}
+    public function edit(string $id) {}
+    public function update(Request $request, string $id) {}
+    public function destroy(string $id) {}
 }

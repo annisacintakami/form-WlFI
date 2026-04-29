@@ -96,8 +96,7 @@ Route::post('/contactadmin/reply/{id}', function ($id) {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/logout', function () {
-    Session::flush();
-
-    return redirect('/');
+Route::post('/logout', function () {
+    session()->forget('admin');
+    return redirect('/login');
 })->name('logout');

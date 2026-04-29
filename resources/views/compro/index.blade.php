@@ -79,11 +79,10 @@
 
         <!-- Judul -->
         <div class="text-center mb-5">
-            <h5 class="section-title bg-white text-primary px-4 fw-bold"
-                style="color:#003366 !important;">
-                Layanan Akses WIFI Direktorat Jenderal Pemasyarakatan
-            </h5>
-        </div>
+    <h5 class="text-primary px-4 fw-bold" style="color: #003366 !important;">
+        LAYANAN AKSES WIFI DREKTORAT JENDERAL PEMASYARAKATAN
+    </h5>
+</div>
 
         <!-- Card WIFI -->
         <div class="row g-4 bg-light rounded-4 shadow-sm p-4 align-items-center">
@@ -453,6 +452,8 @@
 
 
     <!-- JavaScript Libraries -->
+
+    
     @include('compro.inc.js')
 </body>
 
