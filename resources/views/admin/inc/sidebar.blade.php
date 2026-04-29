@@ -2,9 +2,9 @@
 
     <style>
         #layout-menu {
-            width: 270px; /* Sedikit lebih lebar untuk kenyamanan visual */
+            width: 270px;
             min-height: 100vh;
-            background: #1e293b; /* Warna Slate-Dark yang lebih profesional dibanding biru murni */
+            background: #1e293b;
             color: #f8fafc;
             display: flex;
             flex-direction: column;
@@ -24,7 +24,7 @@
         }
 
         #layout-menu .brand-logo-bg {
-            background: #3b82f6; /* Accent color */
+            background: #3b82f6;
             width: 35px;
             height: 35px;
             display: flex;
@@ -44,7 +44,7 @@
             display: flex;
             align-items: center;
             padding: 12px 16px;
-            color: #94a3b8; /* Teks abu-abu untuk item tidak aktif */
+            color: #94a3b8;
             text-decoration: none;
             border-radius: 12px;
             margin-bottom: 4px;
@@ -58,7 +58,7 @@
             transform: translateX(5px);
         }
 
-        /* Active State */
+        /* ACTIVE (WARNA BIRU) */
         #layout-menu .menu-item.active .menu-link {
             background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: #ffffff;
@@ -80,30 +80,6 @@
             color: #64748b;
             font-weight: 700;
         }
-
-        /* Logout Section Bottom */
-        .menu-footer {
-            padding: 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .btn-logout {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-logout:hover {
-            background: #ef4444;
-            color: #fff;
-        }
     </style>
 
     <div class="app-brand d-flex align-items-center">
@@ -119,39 +95,14 @@
         
         <li class="menu-header">Menu Utama</li>
 
-        <li class="menu-item {{ request()->routeIs('contactadmin.index') ? 'active' : '' }}">
+        {{-- 🔥 PERBAIKAN DI SINI (ACTIVE OTOMATIS) --}}
+        <li class="menu-item {{ request()->routeIs('contactadmin.index') || request()->routeIs('dashboard') ? 'active' : '' }}">
             <a href="{{ route('contactadmin.index') }}" class="menu-link">
                 <i class="menu-icon bx bx-grid-alt"></i>
                 <span>Daftar Pengajuan</span>
             </a>
         </li>
 
-        <!--<li class="menu-item">
-            <a href="#" class="menu-link">
-                <i class="menu-icon bx bx-history"></i>
-                <span>Riwayat Selesai</span>
-            </a>
-        </li>
-
-        <li class="menu-header">Laporan</li>
-        
-        <li class="menu-item">
-            <a href="#" class="menu-link">
-                <i class="menu-icon bx bx-stats"></i>
-                <span>Statistik Pengguna</span>
-            </a>
-        </li>-->
-
     </ul>
-
-    <!--<div class="menu-footer">
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="btn-logout">
-                <i class="bx bx-log-out me-2"></i>
-                <span>Keluar Aplikasi</span>
-            </button>
-        </form>
-    </div>-->
 
 </aside>

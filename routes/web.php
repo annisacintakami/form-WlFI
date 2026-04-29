@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Home;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
@@ -12,17 +11,17 @@ use App\Http\Controllers\ContactController;
 |--------------------------------------------------------------------------
 */
 
+// HOME
 Route::get('/', function () {
-    // $homes = Home::orderBy('id', 'DESC')->limit(2)->get();
-    return view('compro.index',
-    //  compact('homes')
-     );
+    return view('compro.index');
 })->name('home.index');
 
+// CONTACT PAGE
 Route::get('/contact', function () {
     return view('compro.contact');
 })->name('contact.index');
 
+// LOGIN PAGE
 Route::get('/login', function () {
     return view('admin.login');
 })->name('login.index');
@@ -30,11 +29,13 @@ Route::get('/login', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Contact Routes
+| Contact (User)
 |--------------------------------------------------------------------------
 */
 
-Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+// SIMPAN PESAN
+Route::post('/contact/store', [ContactController::class, 'store'])
+    ->name('contact.store');
 
 
 /*
@@ -43,17 +44,18 @@ Route::post('/contact/store', [ContactController::class, 'store'])->name('contac
 |--------------------------------------------------------------------------
 */
 
+// REDIRECT GOOGLE
 Route::get('/auth/google', function () {
     return Socialite::driver('google')->redirect();
 })->name('google.auth');
 
+// CALLBACK GOOGLE
 Route::get('/auth/google/callback', function () {
     $user = Socialite::driver('google')->user();
 
-    // Cek apakah email adalah admin
+    // CEK EMAIL ADMIN
     if ($user->email === '3901nis@gmail.com') {
         Session::put('admin', $user);
-
         return redirect('/dashboard');
     }
 
@@ -63,33 +65,27 @@ Route::get('/auth/google/callback', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Admin Protected Routes
+| Admin Routes (Protected)
 |--------------------------------------------------------------------------
 */
 
-Route::get('/dashboard', function () {
-    if (!session('admin')) {
-        return redirect('/login');
-    }
 
-    return view('admin.app');
-})->name('dashboard');
 
-Route::get('/contactadmin/index', function () {
-    if (!session('admin')) {
-        return redirect('/login');
-    }
+// DASHBOARD (langsung ke controller)
+Route::get('/dashboard', [ContactController::class, 'index'])
+    ->name('dashboard');
 
-    return app(ContactController::class)->index();
-})->name('contactadmin.index');
+// HALAMAN CONTACT ADMIN + SEARCH
+Route::get('/contactadmin/index', [ContactController::class, 'index'])
+    ->name('contactadmin.index');
 
-Route::post('/contactadmin/reply/{id}', function ($id) {
-    if (!session('admin')) {
-        return redirect('/login');
-    }
+// REPLY EMAIL
+Route::post('/contactadmin/reply/{id}', [ContactController::class, 'reply'])
+    ->name('contactadmin.reply');
 
-    return app(ContactController::class)->reply(request(), $id);
-})->name('contactadmin.reply');
+// DELETE DATA
+Route::delete('/contactadmin/{id}', [ContactController::class, 'destroy'])
+    ->name('contactadmin.destroy');
 
 
 /*

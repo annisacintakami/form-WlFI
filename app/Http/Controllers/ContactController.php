@@ -12,15 +12,28 @@ class ContactController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        if (!session('admin')) {
-            return redirect('/');
-        }
-
-        $contacts = Contact::latest()->get();
-        return view('admin.contact.index', compact('contacts'));
+  public function index(Request $request)
+{
+    if (!session('admin')) {
+        return redirect('/');
     }
+
+    $query = Contact::query();
+
+    // 🔍 FILTER SEARCH
+    if ($request->filled('search')) {
+        $search = strtolower($request->search);
+
+        $query->where(function ($q) use ($search) {
+            $q->whereRaw('LOWER(name) LIKE ?', ["%{$search}%"])
+              ->orWhereRaw('LOWER(nip) LIKE ?', ["%{$search}%"]);
+        });
+    }
+
+    $contacts = $query->latest()->paginate(10);
+
+    return view('admin.contact.index', compact('contacts'));
+}
 
     /**
      * Store a newly created resource in storage.
