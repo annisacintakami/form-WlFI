@@ -8,6 +8,7 @@
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     @include('admin.inc.head')
 
@@ -99,12 +100,46 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
+        .layout-menu-collapsed #layout-menu {
+    width: 80px !important;
+}
+
+.layout-menu-collapsed #layout-menu .menu-link {
+    justify-content: center;
+}
+
+.layout-menu-collapsed #layout-menu .menu-icon {
+    margin-right: 0;
+}
+
+#layout-menu {
+    transition: all 0.3s ease;
+}
 
         /* 📱 Responsive */
         @media (max-width: 768px) {
             .search-input { width: 150px; }
             .search-input:focus { width: 180px; }
         }
+
+        /* Sidebar collapse */
+.layout-menu-collapsed #layout-menu {
+    width: 80px !important;
+}
+
+.layout-menu-collapsed .layout-page {
+    margin-left: 80px !important;
+}
+
+/* Sembunyikan teks sidebar saat collapse */
+.layout-menu-collapsed #layout-menu span {
+    display: none;
+}
+#layout-menu,
+.layout-page {
+    transition: all 0.3s ease;
+}
+
     </style>
 </head>
 
@@ -119,11 +154,11 @@
 
             <nav class="layout-navbar navbar navbar-expand-xl align-items-center">
 
-                <div class="layout-menu-toggle d-xl-none me-2">
-                    <a href="javascript:void(0)">
-                        <i class="bx bx-menu fs-4"></i>
-                    </a>
-                </div>
+                {{-- <div class="layout-menu-toggle me-2"> --}}
+                    {{-- <a href="javascript:void(0)"> --}}
+                        {{-- <i class="bx bx-menu fs-4"></i> --}}
+                    {{-- </a> --}}
+                {{-- </div> --}}
 
                 <form action="{{ route('contactadmin.index') }}" method="GET" class="search-box me-auto" id="searchForm">
                     <i class="bx bx-search search-icon"></i>
@@ -217,6 +252,26 @@
             }, 700); // Eksekusi setelah 0.7 detik berhenti mengetik
         });
     });
+
+    
+ 
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.querySelector(".layout-menu-toggle");
+    const layout = document.querySelector(".layout-wrapper");
+
+    if (toggleBtn && layout) {
+        toggleBtn.addEventListener("click", function () {
+            layout.classList.toggle("layout-menu-collapsed");
+        });
+    }
+
+    // Auto collapse di mobile
+    if (window.innerWidth < 768) {
+        layout.classList.add("layout-menu-collapsed");
+    }
+});
+
+
 </script>
 
 </body>

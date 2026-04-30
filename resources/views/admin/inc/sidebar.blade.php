@@ -81,15 +81,21 @@
             font-weight: 700;
         }
     </style>
-
+{{-- <div class="layout-menu-toggle me-2">
+                        <i class="bx bx-menu fs-4"></i>
+        </div> --}}
     <div class="app-brand d-flex align-items-center">
+         
         <a href="{{ route('contactadmin.index') }}" class="app-brand-link d-flex align-items-center text-decoration-none">
             <span class="brand-logo-bg">
                 <i class="bx bx-wifi text-white fs-4"></i>
             </span>
             <span class="fw-bold fs-5 tracking-tight text-white">e-Connect</span>
         </a>
+        
     </div>
+    
+    
 
     <ul class="menu-inner list-unstyled">
         

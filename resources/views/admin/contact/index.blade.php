@@ -78,8 +78,18 @@
                                         class="btn btn-sm btn-primary px-3 shadow-sm"
                                         data-bs-toggle="modal"
                                         data-bs-target="#replyModal{{ $contact->id }}">
-                                        Balas
+                                        <i class="fas fa-reply"></i>
                                     </button>
+                                    <form action="{{ route('contactadmin.destroy', $contact->id) }}" method="POST" class="d-inline">
+    @csrf
+    @method('DELETE')
+
+    <button class="btn btn-sm btn-danger px-3 shadow-sm"
+        onclick="return confirm('Yakin ingin menghapus data ini?')">
+        <i class="fas fa-trash"></i>
+    </button>
+</form>
+                                    
                                 </td>
                             </tr>
 
@@ -110,8 +120,9 @@
                                                         id="reply{{ $contact->id }}"
                                                         class="form-control" 
                                                         rows="4" 
-                                                        placeholder="Tulis instruksi atau status pengajuan di sini..."
-                                                        required></textarea>
+                                                        {{-- placeholder="Tulis instruksi atau status pengajuan di sini..." --}}
+                                                        
+                                                        required>Udah bisa konek coba aja</textarea>
                                                 </div>
                                             </div>
 

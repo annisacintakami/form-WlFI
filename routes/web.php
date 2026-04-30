@@ -86,6 +86,7 @@ Route::post('/contactadmin/reply/{id}', [ContactController::class, 'reply'])
 // DELETE DATA
 Route::delete('/contactadmin/{id}', [ContactController::class, 'destroy'])
     ->name('contactadmin.destroy');
+    
 
 
 /*
